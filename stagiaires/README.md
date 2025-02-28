@@ -1,2 +1,0 @@
-# Partie des stagiaires
-
