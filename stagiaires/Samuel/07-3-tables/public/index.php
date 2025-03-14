@@ -30,23 +30,25 @@ if(!empty($_GET)) {
     if (isset($_GET['articles'])) {
         $articles = $db->query("SELECT * FROM `thearticle` ORDER BY `thearticledate` DESC LIMIT 30");
         include "../view/articles.view.php";
+        $articles->closeCursor();
 
     } elseif (isset($_GET['rubriques'])) {
         $rubriques = $db->query("SELECT * FROM `thesection` ORDER BY `idthesection` ASC");
         include "../view/rubriques.view.php";
+        $rubriques->closeCursor();
 
     } elseif (isset($_GET['users'])) {
         $users = $db->query("SELECT * FROM `theuser` ORDER BY `theuserlogin` ASC");
         include "../view/users.view.php";
-    }
+        $users->closeCursor();
+    }   
 
 }else{
     // appel de la vue de l'accueil
     include "../view/accueil.view.php";
 }
 
-// fermeture de la requête
-$request->closeCursor();
+
 
 // fermeture de connexion
 $db = null;
