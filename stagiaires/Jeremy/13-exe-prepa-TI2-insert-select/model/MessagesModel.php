@@ -63,7 +63,7 @@ function addMessage(PDO $con,string $name, string $email, string $text) : bool|s
 
     // pas d'erreur détectée
     $prepare = $con->prepare("
-    INSERT INTO `messages` (`name`,`email`,`message`)
+    INSERT INTO `article` (`surname`,`email`,`message`)
     VALUES (?,?,?)
     ");
     try{

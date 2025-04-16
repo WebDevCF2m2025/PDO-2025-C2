@@ -2,51 +2,76 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../public/css/style.css">
     <title>Exercice</title>
 </head>
 <body>
-<h1>Exercice</h1>
+<h1>Accueil</h1>
 <h2>Laissez-nous un message</h2>
-<pre><form id="maPage" method="">
-        
-<form action="" method="post">
-        <label for="surname">Nom</label>
-        <input type="text" name="surname" id="name" required>
-        <br>
-        <label for="email">Email</label>
+<?php
+// Si le message à été envoyé avec succès
+if(isset($success)):
+?>
+    <h4 class="success"><?=$success?></h4>
+<?php
+endif;
+// Si on a une erreur lors de l'insertion
+if(isset($error)):
+?>
+    <h4 class="error"><?=$error?></h4>
+<?php
+endif;
+?>
+    <form action="" method="post">
+        <label for="surname">Votre surnom:</label>
+        <input type="text" name="surname" id="surname" required>
+        <label for="email">Votre email:</label>
         <input type="email" name="email" id="email" required>
-        <br>
-        <label for="message">Message</label>
-        <textarea name="message" id="message" cols="30" rows="10" required></textarea>
-        <br>
+        <label for="message">Votre commentaire:</label>
+        <textarea name="message" id="message" rows="10" required></textarea>
         <button type="submit">Envoyer</button>
-
     </form>
-    <hr>
-    <?php
-$nombMessage = isset($messages) ? count($messages) : 0;
-if ($nombMessage < 1): ?>
-    <p>Pas encore de message</p>
-<?php elseif ($nombMessage === 1): ?>
-    <p>1 message : Il y a <?= $nombMessage ?> message</p>
-<?php else: ?>
-    <p>Plusieurs messages : Il y a <?= $nombMessage ?> messages</p>
-<?php endif; ?>
 <hr>
-<?php if (!empty($messages)): ?>
-    <h2>Nos messages (triés par date DESC)</h2>
-    <?php foreach ($messages as $message): ?>
-        <div>
-            <strong>NOM:</strong> <h3 style="display: inline;"><?= htmlspecialchars($message['surname']) ?></h3><br>
-            <strong>TEXTE:</strong> <p style="display: inline;"><?= nl2br(htmlspecialchars($message['message'])) ?></p><br>
-            <strong>DATE:</strong> <p style="display: inline;"><?= htmlspecialchars($message['create_date']) ?></p>
-        </div>
-        <hr>
-    <?php endforeach; ?>
-<?php endif; ?>
+<?php 
+// S'il n'y a aucun commentaire (tableau vide)
+if(empty($messages)):
+?>
+
+<div class="nocommentary">
+    <h2>Il n'y a pas de commentaire</h2>
+    <p>Veuillez revenir sur cette page plus tard</p>
+</div>
+
+<?php 
+// Si le tableau contient un ou plusieurs commentaires
+else:
+    // On compte le nombre de commentaire
+    $nbCommentary = count($messages);
+    // On ajoute une variable pour le 's' de commentaire si nécéssaire
+    $commentarys = $nbCommentary>1 ? "s" : "";
+?>
+
+<div class="commentary">
+
+    <h2>Il y a <?=$nbCommentary?> commentaire<?=$commentarys?></h2> 
+
+<?php 
+    // Tant qu'on a des messages on affiche
+    foreach ($messages as $message):
+    ?>
+    <h3><?=$message['surname']?></h3>
+    <p><?=$message['message']?></p>
+    <p><?=$message['create_date']?></p>
+    </pre>
+    <hr>
+    <?php 
+    endforeach;
+    ?>
+<?php 
+endif;
+
+?>
 </body>
 </html>
