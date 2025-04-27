@@ -1,13 +1,34 @@
-body{
+body {
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
-    margin: 50px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre le contenu horizontalement */
+    justify-content: flex-start; /* Laisse tout commencer en haut */
+    min-height: 100vh; /* Assure que le body occupe toute la hauteur de la fenêtre */
 }
-form{
+
+/* Formulaire centré */
+form {
     display: flex;
     flex-direction: column;
     width: 400px;
+    margin-bottom: 30px; /* Espace sous le formulaire */
 }
+
+/* Titres centrés */
+h1, h2 {
+    text-align: center;
+    /* Espace sous les titres */
+}
+
+/* Section "Pas de commentaire" et autres messages centrés */
+.nocommentary, .commentary {
+    text-align: center;
+}
+
 .error{
     color: red;
 }
@@ -20,4 +41,46 @@ form{
 }
 .success{
     color: green;
+}
+
+/* COMMENTAIRES */
+
+.container-commentary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin: 30px 0;
+    width: 100%;
+}
+
+.carte {
+    width: 22%;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.carte:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+}
+
+.carte h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.carte p {
+    color: #666;
+}
+
+.date {
+    font-size: 0.8em;
+    color: #999;
 }
