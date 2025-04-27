@@ -56,19 +56,20 @@ else:
 <div class="commentary">
 
     <h2>Il y a <?=$nbCommentary?> commentaire<?=$commentarys?></h2> 
-
+</div>
+<div class="container-commentary">
 <?php 
-    // Tant qu'on a des messages on affiche
-    foreach ($messages as $message):
-    ?>
-    <h3><?=$message['surname']?></h3>
-    <p><?=$message['message']?></p>
-    <p><?=$message['create_date']?></p>
-    </pre>
-    <hr>
-    <?php 
-    endforeach;
-    ?>
+foreach ($messages as $message):
+?>
+    <div class="carte">
+        <h3><?=$message['surname']?></h3>
+        <p><?=$message['message']?></p>
+        <p class="date"><?=$message['create_date']?></p>
+    </div>
+<?php 
+endforeach;
+?>
+</div>
 <?php 
 endif;
 
